@@ -1,0 +1,36 @@
+{% extends 'minerals/index.html' %}
+{% load static from staticfiles %}
+{% load mineral_tags %}
+
+{% block title %}
+    <title>Macky's Minerals | {{ show_mineral.name }}</title>
+{% endblock title %}
+{% block main_body_content %}
+    <div class="grid-100 mineral__container">
+        <h1 class="mineral__name">{{ show_mineral.name }}</h1>
+        <div class="mineral__image-bg">
+            <img class="mineral__image" src="{% static 'images/' %}{{ show_mineral.name|title }}.jpg">
+            <p class="mineral__caption">{{ show_mineral.caption }}</p>
+        </div>
+    </div>
+    <div class="mineral__table-container">
+        <table class="mineral__table">
+            {% for key, value in show_mineral.items %}
+                {% if value %}
+                    {% if key != 'name' and key != 'image_filename' and key != 'image_caption' and key != 'id' %}
+                        <tr>
+                            <td class="mineral__category">{{ key|pretty_output }}</td>
+                                {% if key == 'formula' %}
+                                    <td class="mineral_formula">{{ value|safe }}</td>
+                                {% else %}
+                                    <td>{{ value }}</td>
+                                {% endif %}
+                        </tr>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+    <a class="previous_mineral" href="{% url 'minerals:see_mineral' pk=previous_mineral %}">Previous</a>
+    <a class="next_mineral" href="{% url 'minerals:see_mineral' pk=next_mineral %}">Next</a>
+{% endblock main_body_content %}

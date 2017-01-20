@@ -1,0 +1,5 @@
+{% for streak in streak_names %}
+    <li class="minerals__item">
+        <a class="streak__anchor" href="{% url 'minerals:streaks' streak_color=streak %}">{{ streak|title }}</a>
+    </li>
+{% endfor %}

@@ -1,0 +1,17 @@
+{% extends 'minerals/index.html' %}
+
+{% block title %}
+    <title>Macky's Minerals | {{ page_title|title }}</title>
+{% endblock title %}
+
+{% block main_body_content %}
+    <div class="grid-100">
+        <ul class="minerals__container">
+            {% for indexed, named in search_results %}
+                <li class="minerals__item">
+                    <a class="minerals__anchor" href="{% url 'minerals:see_mineral' pk=indexed %}">{{ named }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock main_body_content %}

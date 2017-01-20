@@ -1,0 +1,5 @@
+{% for group_name in group_names %}
+    <li class="minerals__item">
+        <a class="minerals__anchor" href="{% url 'minerals:groups' grouping=group_name %}">{{ group_name|title }}</a>
+    </li>
+{% endfor %}

@@ -1,0 +1,11 @@
+{% load mineral_tags %}
+
+{% for letter in letters %}
+    <li>
+        <a class="letter__links" href="{% url 'minerals:first_letter' start_letter=letter %}" >
+            {{ letter }}
+        </a>
+    </li>
+{% endfor %}
+
+
